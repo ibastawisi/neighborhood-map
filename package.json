@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "escape-string-regexp": "^1.0.5",
     "google-maps-react": "^2.0.2",
     "jquery": "^3.3.1",
-    "mdbreact": "^4.4.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2",
@@ -20,5 +20,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
   }
 }
