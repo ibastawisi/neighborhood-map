@@ -21,9 +21,11 @@ class App extends Component {
   }
 
   filter = (query) => {
-    this.setState({ query: query.trim() })
     const match = new RegExp(escapeRegExp(query), 'i')
-    this.setState({ filteredlocs: this.state.locations.filter((location) => match.test(location.name)) || this.state.locations })
+    this.setState({
+      query,
+      filteredlocs: this.state.locations.filter((location) => match.test(location.name)) || this.state.locations
+    })
 
   }
   render() {
