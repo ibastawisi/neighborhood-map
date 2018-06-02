@@ -5,12 +5,19 @@ export class MapContainer extends Component {
     state = {
         lat: 27.5,
         lng: 31.5,
-        zoom: 6.3,
+        zoom: 6,
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
     };
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedloc) {
+            // console.log(nextProps.selectedloc)
+            // console.log({...this.refs}[nextProps.selectedloc])
+            this.onMarkerClick({ ...this.refs }[nextProps.selectedloc].props, { ...this.refs }[nextProps.selectedloc].marker)
+        }
+    }
     onMarkerClick = (props, marker, e) => {
         this.setState({
             lat: props.position.lat,
@@ -27,7 +34,7 @@ export class MapContainer extends Component {
             this.setState({
                 lat: 27.5,
                 lng: 31.5,
-                zoom: 6.3,
+                zoom: 6,
                 showingInfoWindow: false,
                 activeMarker: null
             })
@@ -47,7 +54,7 @@ export class MapContainer extends Component {
                     lng: lng
                 }} zoom={zoom} onClick={this.onMapClicked}>
                 {locations.map(location =>
-                    <Marker
+                    <Marker ref={location.name}
                         key={location.id}
                         onClick={this.onMarkerClick}
                         name={location.name}

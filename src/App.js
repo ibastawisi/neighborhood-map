@@ -10,7 +10,8 @@ class App extends Component {
   state = {
     locations: [],
     query: '',
-    filteredlocs: []
+    filteredlocs: [],
+    selectedloc:''
   }
   componentDidMount() {
     fetch('loc.json')
@@ -26,14 +27,20 @@ class App extends Component {
       query,
       filteredlocs: this.state.locations.filter((location) => match.test(location.name)) || this.state.locations
     })
-
   }
+
+  onLocClicked = (loc)=>{
+    this.filter(loc.textContent)
+  this.setState({
+    selectedloc: loc.textContent  })
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row flex-column flex-lg-row">
-          <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} />
-          <MapContainer google={this.props.google} locations={this.state.filteredlocs || this.state.locations} />
+          <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} onLocClicked={this.onLocClicked} />
+          <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}/>
         </div>
       </div>
     )
