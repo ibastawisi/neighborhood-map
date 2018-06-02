@@ -11,7 +11,13 @@ class App extends Component {
     locations: [],
     query: '',
     filteredlocs: [],
-    selectedloc:''
+    selectedloc: '',
+    lat: 27.5,
+    lng: 31.5,
+    zoom: 6,
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
   }
   componentDidMount() {
     fetch('loc.json')
@@ -29,18 +35,48 @@ class App extends Component {
     })
   }
 
-  onLocClicked = (loc)=>{
+  onLocClicked = (loc) => {
     this.filter(loc.textContent)
-  this.setState({
-    selectedloc: loc.textContent  })
+    this.setState({
+      selectedloc: loc.textContent
+    })
+  }
+  onMarkerClick = (props, marker, e) => {
+    this.filter(props.name)
+    this.setState({
+      lat: props.position.lat,
+      lng: props.position.lng,
+      zoom: 8,
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+    // console.log(props)
   }
 
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        lat: 27.5,
+        lng: 31.5,
+        zoom: 6,
+        showingInfoWindow: false,
+        activeMarker: null,
+        selectedloc: null,
+        query: '',
+        filteredlocs: this.state.locations
+      })
+    }
+  };
   render() {
     return (
       <div className="container-fluid">
         <div className="row flex-column flex-lg-row">
           <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} onLocClicked={this.onLocClicked} />
-          <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}/>
+          <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}
+            onMapClicked={this.onMapClicked} onMarkerClick={this.onMarkerClick} showingInfoWindow={this.state.showingInfoWindow}
+            activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} lat={this.state.lat}
+            lng={this.state.lng} zoom={this.state.zoom} />
         </div>
       </div>
     )

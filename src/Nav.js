@@ -6,7 +6,7 @@ class Nav extends React.Component {
 
         return (<div className="col-lg-3 p-0">
             <nav className="side-nav navbar navbar-expand-lg navbar-dark bg-dark flex-lg-column">
-                <a className="navbar-brand" href="/">Landmarks</a><button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <h1 className="navbar-brand">Landmarks</h1><button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse flex-column w-100" id="navbarSupportedContent">
