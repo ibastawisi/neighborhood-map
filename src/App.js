@@ -12,12 +12,12 @@ class App extends Component {
     query: '',
     filteredlocs: [],
     selectedloc: '',
-    lat: 27.5,
-    lng: 31.5,
+    position: { lat: 27.5, lng: 31.5 },
     zoom: 6,
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    markericon: null
   }
   componentDidMount() {
     fetch('loc.json')
@@ -44,12 +44,15 @@ class App extends Component {
   onMarkerClick = (props, marker, e) => {
     this.filter(props.name)
     this.setState({
-      lat: props.position.lat,
-      lng: props.position.lng,
-      zoom: 8,
+      position: props.position,
+      zoom: 9,
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      markericon: {
+        url: "https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg",
+        scaledSize: new window.google.maps.Size(48, 48)
+      }
     })
     // console.log(props)
   }
@@ -57,14 +60,14 @@ class App extends Component {
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
-        lat: 27.5,
-        lng: 31.5,
+        position: { lat: 27.5, lng: 31.5 },
         zoom: 6,
         showingInfoWindow: false,
         activeMarker: null,
         selectedloc: null,
         query: '',
-        filteredlocs: this.state.locations
+        filteredlocs: this.state.locations,
+        markericon: null
       })
     }
   };
@@ -75,8 +78,8 @@ class App extends Component {
           <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} onLocClicked={this.onLocClicked} />
           <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}
             onMapClicked={this.onMapClicked} onMarkerClick={this.onMarkerClick} showingInfoWindow={this.state.showingInfoWindow}
-            activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} lat={this.state.lat}
-            lng={this.state.lng} zoom={this.state.zoom} />
+            activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} position={this.state.position}
+            zoom={this.state.zoom} markericon={this.state.markericon} />
         </div>
       </div>
     )

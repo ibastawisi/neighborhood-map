@@ -2,17 +2,17 @@
   {
     "id": 0,
     "name": "The Pyramids Of Giza",
-    "pos": [
-      29.9772458,
-      31.1290741
-    ]
+    "position": {
+      "lat": 29.9772458,
+      "lng": 31.1290741
+    }
   },
   {
     "id": 1,
     "name": "Abu Simbel Temples",
-    "pos": [
-      22.3372368,
-      31.6236103
-    ]
+    "position": {
+      "lat": 22.3372368,
+      "lng": 31.6236103
+    }
   }
 ]

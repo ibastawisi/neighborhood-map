@@ -19,23 +19,21 @@ export class MapContainer extends Component {
 
     render() {
         const locations = this.props.locations
-        const { lat, lng, zoom } = this.props
         return (
-            <Map className="col-lg-9 map-container" google={this.props.google} initialCenter={{
-                lat: lat,
-                lng: lng
-            }}
-                center={{
-                    lat: lat,
-                    lng: lng
-                }} zoom={zoom} onClick={this.props.onMapClicked}>
+            <Map className="col-lg-9 map-container"
+                google={this.props.google}
+                initialCenter={this.props.position}
+                center={this.props.position}
+                zoom={this.props.zoom}
+                onClick={this.props.onMapClicked}>
                 {locations.map(location =>
                     <Marker ref={location.name}
                         key={location.id}
                         onClick={this.props.onMarkerClick}
                         name={location.name}
                         title={location.name}
-                        position={{ lat: location.pos[0], lng: location.pos[1] }} />
+                        position={location.position}
+                        icon={this.props.markericon} />
                 )}
                 <InfoWindow
                     marker={this.props.activeMarker}
