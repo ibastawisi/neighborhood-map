@@ -39,7 +39,10 @@ export class MapContainer extends Component {
                     marker={this.props.activeMarker}
                     visible={this.props.showingInfoWindow}>
                     <div>
-                        <h5>{this.props.selectedPlace.name}</h5>
+                        <h2 className='h5 text-center p-1'>{this.props.selectedPlace.name}</h2>
+                        {this.props.photos.map(photo =>
+                            <img key={photo.id} className="img-thumbnail mx-1" src={`http://farm${photo.farm}.static.flickr.com/${
+                                photo.server}/${photo.id}_${photo.secret}_t.jpg`} alt={photo.title} />)}
                     </div>
                 </InfoWindow>
             </Map>

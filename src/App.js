@@ -17,6 +17,7 @@ class App extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    photos: [],
     markericon: null
   }
   componentDidMount() {
@@ -34,7 +35,19 @@ class App extends Component {
       filteredlocs: this.state.locations.filter((location) => match.test(location.name)) || this.state.locations
     })
   }
-
+  addImage = (query) => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&
+    api_key=e8b88834ebfed787c9bb59e190792e9a&
+    text=${query}&is_getty=1&sort=interestingness-desc&
+    per_page=3&format=json&nojsoncallback=1`, {
+      }).then(response => response.json())
+      .then(data => {
+        this.setState({ photos: data.photos.photo })
+      })
+      .catch(err => {
+        console.log('Error happened during fetching images!', err);
+      })
+  }
   onLocClicked = (loc) => {
     this.filter(loc.textContent)
     this.setState({
@@ -43,6 +56,7 @@ class App extends Component {
   }
   onMarkerClick = (props, marker, e) => {
     this.filter(props.name)
+    this.addImage(props.name)
     this.setState({
       position: props.position,
       zoom: 9,
@@ -54,9 +68,7 @@ class App extends Component {
         scaledSize: new window.google.maps.Size(48, 48)
       }
     })
-    // console.log(props)
   }
-
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -67,9 +79,11 @@ class App extends Component {
         selectedloc: null,
         query: '',
         filteredlocs: this.state.locations,
+        photos: [],
         markericon: null
       })
     }
+
   };
   render() {
     return (
@@ -79,7 +93,7 @@ class App extends Component {
           <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}
             onMapClicked={this.onMapClicked} onMarkerClick={this.onMarkerClick} showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} position={this.state.position}
-            zoom={this.state.zoom} markericon={this.state.markericon} />
+            zoom={this.state.zoom} markericon={this.state.markericon} photos={this.state.photos} />
         </div>
       </div>
     )
