@@ -1,18 +1,34 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "name": "The Pyramids Of Giza",
-    "pos": [
-      29.9772458,
-      31.1290741
-    ]
+    "position": {
+      "lat": 29.9792391,
+      "lng": 31.1320132
+    }
   },
   {
-    "id": 1,
+    "id": 2,
+    "name": "Sharm El-Sheikh Resorts",
+    "position": {
+      "lat": 27.9502316,
+      "lng": 33.9800563
+    }
+  },
+  {
+    "id": 3,
+    "name": "Karnak Temples",
+    "position": {
+      "lat": 25.7188394,
+      "lng": 32.6550816
+    }
+  },
+  {
+    "id": 4,
     "name": "Abu Simbel Temples",
-    "pos": [
-      22.3372368,
-      31.6236103
-    ]
+    "position": {
+      "lat": 22.3372368,
+      "lng": 31.6236103
+    }
   }
 ]
