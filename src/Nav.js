@@ -15,18 +15,18 @@ class Nav extends React.Component {
                             onChange={(event) => filter(event.target.value)}
                             placeholder="Search" aria-label="Search"></input>
                         <div className="input-group-append">
-                            <button className="btn" type="button" onClick={this.props.onMapClicked}>Clear</button>
+                            <button className="btn" type="button" onClick={this.props.clear}>Clear</button>
                         </div>
                     </div>
-                <div className="list-group p-0 mt-2 w-100">
-                    {locations.map((location) => (
-                        <button key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
-                            <div className="d-flex w-100 justify-content-between">
-                                <h5>{location.name}</h5>
-                            </div>
-                        </button>
-                    ))}
-                </div>
+                    <div className="list-group p-0 mt-2 w-100">
+                        {locations.map((location) => (
+                            <button key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
+                                <div className="d-flex w-100 justify-content-between">
+                                    <h5>{location.name}</h5>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </nav>
         </div >

@@ -82,14 +82,20 @@ class App extends Component {
         markericon: null
       })
     }
-
   };
+  clear = () => {
+    this.setState({
+      query: '',
+      filteredlocs: this.state.locations,
+    })
+    this.onMapClicked()
+  }
   render() {
     return (
       <div className="container-fluid">
         <div className="row flex-column flex-lg-row">
           <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} onLocClicked={this.onLocClicked}
-            onMapClicked={this.onMapClicked} />
+            clear={this.clear} />
           <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}
             onMapClicked={this.onMapClicked} onMarkerClick={this.onMarkerClick} showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} position={this.state.position}
