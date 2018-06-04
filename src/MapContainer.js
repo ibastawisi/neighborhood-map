@@ -43,6 +43,7 @@ export class MapContainer extends Component {
                         {this.props.photos.map(photo =>
                             <img key={photo.id} className="img-thumbnail mx-1" src={`https://farm${photo.farm}.static.flickr.com/${
                                 photo.server}/${photo.id}_${photo.secret}_t.jpg`} alt={photo.title} />)}
+                        <p className='text-right pt-2 m-0'>Images fetched using Flicker API</p>
                     </div>
                 </InfoWindow>
             </Map>

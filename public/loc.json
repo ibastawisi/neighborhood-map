@@ -1,4 +1,11 @@
-[
+[  {
+    "id": 0,
+    "name": "Citadel of Qaitbay",
+    "position": {
+      "lat": 31.2140156,
+      "lng": 29.8834496
+    }
+  },
   {
     "id": 1,
     "name": "The Pyramids Of Giza",

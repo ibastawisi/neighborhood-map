@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import escapeRegExp from 'escape-string-regexp'
@@ -39,7 +38,7 @@ class App extends Component {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&
     api_key=e8b88834ebfed787c9bb59e190792e9a&
     text=${query}&is_getty=1&sort=interestingness-desc&
-    per_page=3&format=json&nojsoncallback=1`, {
+    per_page=2&format=json&nojsoncallback=1`, {
       }).then(response => response.json())
       .then(data => {
         this.setState({ photos: data.photos.photo })
@@ -90,7 +89,7 @@ class App extends Component {
       <div className="container-fluid">
         <div className="row flex-column flex-lg-row">
           <Nav locations={this.state.filteredlocs} query={this.state.query} filter={this.filter} onLocClicked={this.onLocClicked}
-          onMapClicked={this.onMapClicked} />
+            onMapClicked={this.onMapClicked} />
           <MapContainer google={this.props.google} locations={this.state.filteredlocs} selectedloc={this.state.selectedloc}
             onMapClicked={this.onMapClicked} onMarkerClick={this.onMarkerClick} showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker} selectedPlace={this.state.selectedPlace} position={this.state.position}
