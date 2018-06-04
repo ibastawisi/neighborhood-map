@@ -41,7 +41,7 @@ export class MapContainer extends Component {
                     <div>
                         <h2 className='h5 text-center p-1'>{this.props.selectedPlace.name}</h2>
                         {this.props.photos.map(photo =>
-                            <img key={photo.id} className="img-thumbnail mx-1" src={`http://farm${photo.farm}.static.flickr.com/${
+                            <img key={photo.id} className="img-thumbnail mx-1" src={`https://farm${photo.farm}.static.flickr.com/${
                                 photo.server}/${photo.id}_${photo.secret}_t.jpg`} alt={photo.title} />)}
                     </div>
                 </InfoWindow>

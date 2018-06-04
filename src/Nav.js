@@ -10,23 +10,26 @@ class Nav extends React.Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse flex-column w-100" id="navbarSupportedContent">
-                    <form className="mt-3 w-100">
+                    <div className="input-group mb-3">
                         <input className="form-control mr-sm-2" type="search" value={query}
                             onChange={(event) => filter(event.target.value)}
                             placeholder="Search" aria-label="Search"></input>
-                    </form>
-                    <div className="list-group p-0 mt-2 w-100">
-                        {locations.map((location) => (
-                            <a key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
-                                <div className="d-flex w-100 justify-content-between">
-                                    <h5>{location.name}</h5>
-                                </div>
-                            </a>
-                        ))}
+                        <div className="input-group-append">
+                            <button className="btn" type="button" onClick={this.props.onMapClicked}>Clear</button>
+                        </div>
                     </div>
+                <div className="list-group p-0 mt-2 w-100">
+                    {locations.map((location) => (
+                        <a key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
+                            <div className="d-flex w-100 justify-content-between">
+                                <h5>{location.name}</h5>
+                            </div>
+                        </a>
+                    ))}
+                </div>
                 </div>
             </nav>
-        </div>
+        </div >
         )
     }
 }
