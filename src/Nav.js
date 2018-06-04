@@ -20,11 +20,11 @@ class Nav extends React.Component {
                     </div>
                 <div className="list-group p-0 mt-2 w-100">
                     {locations.map((location) => (
-                        <a key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
+                        <button key={location.id} onClick={e => this.props.onLocClicked(e.target)} className="list-group-item list-group-item-action flex-column align-items-start">
                             <div className="d-flex w-100 justify-content-between">
                                 <h5>{location.name}</h5>
                             </div>
-                        </a>
+                        </button>
                     ))}
                 </div>
                 </div>
