@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-export class MapContainer extends Component {
+const LoadingContainer = (props) => {
+    console.log(props)
+    return (
+        <div className='d-flex h3 mt-5 justify-content-center align-self-center'>Loading Google Maps</div>
+    )
+}
 
+export class MapContainer extends Component {
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.selectedloc) {
             if (nextProps.selectedloc !== this.props.selectedloc) {
@@ -38,9 +44,9 @@ export class MapContainer extends Component {
                     <div>
                         <h2 className='h5 text-center p-1'>{this.props.selectedPlace.name}</h2>
                         {this.props.photos.map(photo =>
-                        <img key={photo.id} className="img-thumbnail mx-1" src={photo.farm?`https://farm${photo.farm}.static.flickr.com/${
-                        photo.server}/${photo.id}_${photo.secret}_t.jpg`:"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"}
-                        alt={photo.title}/>)}
+                            <img key={photo.id} className="img-thumbnail mx-1" src={photo.farm ? `https://farm${photo.farm}.static.flickr.com/${
+                                photo.server}/${photo.id}_${photo.secret}_t.jpg` : "https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"}
+                                alt={photo.title} />)}
                         <p className='text-right pt-2 m-0'>Images fetched using Flicker API</p>
                     </div>
                 </InfoWindow>
@@ -48,7 +54,10 @@ export class MapContainer extends Component {
         )
     }
 }
-
-export default GoogleApiWrapper({
-    apiKey: ('AIzaSyDkr51-HI0Ko88nYe0xka9-243WPgZqBGk')
-})(MapContainer)
+export default GoogleApiWrapper((props) => {
+    return {
+        apiKey: ('AIzaSyDkr51-HI0Ko88nYe0xka9-243WPgZqBGk'),
+        LoadingContainer: LoadingContainer
+    }
+}
+)(MapContainer)
