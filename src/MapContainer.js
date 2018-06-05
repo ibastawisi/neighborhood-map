@@ -4,11 +4,8 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 export class MapContainer extends Component {
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        // console.log(nextProps, this.props)
         if (nextProps.selectedloc) {
             if (nextProps.selectedloc !== this.props.selectedloc) {
-                // console.log(nextProps.selectedloc)
-                // console.log({...this.refs}[nextProps.selectedloc])
                 this.props.onMarkerClick({ ...this.refs }[nextProps.selectedloc].props, { ...this.refs }[nextProps.selectedloc].marker)
             }
         }
@@ -41,8 +38,9 @@ export class MapContainer extends Component {
                     <div>
                         <h2 className='h5 text-center p-1'>{this.props.selectedPlace.name}</h2>
                         {this.props.photos.map(photo =>
-                            <img key={photo.id} className="img-thumbnail mx-1" src={`https://farm${photo.farm}.static.flickr.com/${
-                                photo.server}/${photo.id}_${photo.secret}_t.jpg`} alt={photo.title} />)}
+                        <img key={photo.id} className="img-thumbnail mx-1" src={photo.farm?`https://farm${photo.farm}.static.flickr.com/${
+                        photo.server}/${photo.id}_${photo.secret}_t.jpg`:"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"}
+                        alt={photo.title}/>)}
                         <p className='text-right pt-2 m-0'>Images fetched using Flicker API</p>
                     </div>
                 </InfoWindow>

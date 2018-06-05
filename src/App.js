@@ -39,12 +39,17 @@ class App extends Component {
     api_key=e8b88834ebfed787c9bb59e190792e9a&
     text=${query}&is_getty=1&sort=interestingness-desc&
     per_page=2&format=json&nojsoncallback=1`, {
-      }).then(response => response.json())
+      }).then(response => response.json()
       .then(data => {
         this.setState({ photos: data.photos.photo })
-      })
+      }))
       .catch(err => {
-        console.log('Error happened during fetching images!', err);
+        this.setState({ photos: [{
+            id:404,
+            title:'Image not found'
+          }]
+        })
+
       })
   }
   onLocClicked = (loc) => {
