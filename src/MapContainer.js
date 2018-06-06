@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+class LoadingContainer extends Component {
+    state = {
+        loaded: true
+    }
+    componentWillUpdate() {
+        setTimeout(() => {
+            if (!window.google) this.setState({ loaded: false })
 
-const LoadingContainer = (props) => {
-    console.log(props)
-    return (
-        <div className='d-flex h3 mt-5 justify-content-center align-self-center'>Loading Google Maps</div>
-    )
+        }, 1000);
+    }
+    render() {
+        if (this.state.loaded) {
+            return (
+                <div className='d-flex h3 mt-5 justify-content-center'>Loading Google Maps</div>
+            )
+        }
+        return (
+            <div className='d-flex h3 mt-5 justify-content-center'>Google Maps couldn't load</div>
+        )
+    }
 }
 
 export class MapContainer extends Component {
