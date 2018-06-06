@@ -4,13 +4,15 @@ class LoadingContainer extends Component {
     state = {
         loaded: true
     }
-    componentWillUpdate() {
-        setTimeout(() => {
-            if (!window.google) this.setState({ loaded: false })
 
-        }, 1000);
-    }
     render() {
+
+        document.onreadystatechange = () => {
+            if (document.readyState == 'complete') {
+                if (!window.google) this.setState({ loaded: false })
+            }
+        }
+
         if (this.state.loaded) {
             return (
                 <div className='d-flex h3 mt-5 justify-content-center'>Loading Google Maps</div>
