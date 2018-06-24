@@ -8,18 +8,18 @@ class LoadingContainer extends Component {
     render() {
 
         document.onreadystatechange = () => {
-            if (document.readyState == 'complete') {
+            if (document.readyState === 'complete') {
                 if (!window.google) this.setState({ loaded: false })
             }
         }
 
         if (this.state.loaded) {
             return (
-                <div className='d-flex h3 mt-5 justify-content-center'>Loading Google Maps</div>
+                <div className='h3 mx-auto mt-5'>Loading Google Maps</div>
             )
         }
         return (
-            <div className='d-flex h3 mt-5 justify-content-center'>Google Maps couldn't load</div>
+            <div className='h3 mx-auto mt-5'>Google Maps couldn't load</div>
         )
     }
 }

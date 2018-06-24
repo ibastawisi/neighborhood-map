@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'animate.css/animate.min.css'
 import escapeRegExp from 'escape-string-regexp'
 import MapContainer from './MapContainer'
 import Nav from './Nav';
